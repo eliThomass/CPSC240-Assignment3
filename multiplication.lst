@@ -1,0 +1,17 @@
+     1                                  section .data
+     2                                  	EXIT equ 60
+     3                                  	EXIT_SUCCESS equ 0
+     4 00000000 E0930400                	num1 dd 300000
+     5 00000004 801A0600                	num2 dd 400000
+     6 00000008 0000000000000000        	product dq 0
+     7                                  section .text
+     8                                  	global _start
+     9                                  _start:
+    10 00000000 8B0425[00000000]        	mov eax, dword[num1]
+    11 00000007 F72425[04000000]        	mul dword[num2]
+    12 0000000E 891425[0C000000]        	mov dword[product+4], edx
+    13 00000015 890425[08000000]        	mov dword[product], eax
+    14                                  	
+    15 0000001C B83C000000              	mov rax, EXIT
+    16 00000021 BF00000000              	mov rdi, EXIT_SUCCESS
+    17                                  	
