@@ -1,0 +1,18 @@
+     1                                  section .data
+     2                                  	EXIT equ 60
+     3                                  	EXIT_SUCCESS equ 0
+     4 00000000 00743BA40B000000        	num1 dq 50000000000
+     5 00000008 D5DC3200                	num2 dd 3333333
+     6 0000000C 00000000                	quotient dd 0
+     7 00000010 00000000                	remainder dd 0
+     8                                  section .text
+     9                                  	global _start
+    10                                  _start:
+    11 00000000 488B0425[00000000]      	mov rax, qword[num1]
+    12 00000008 4899                    	cqo
+    13 0000000A 48F73425[08000000]      	div qword[num2]
+    14 00000012 48890425[0C000000]      	mov qword[quotient], rax
+    15 0000001A 48891425[10000000]      	mov qword[remainder], rdx
+    16                                  	
+    17 00000022 B83C000000              	mov rax, EXIT
+    18 00000027 BF00000000              	mov rdi, EXIT_SUCCESS
